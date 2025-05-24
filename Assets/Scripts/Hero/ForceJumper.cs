@@ -1,16 +1,30 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class ForceJumper : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private InputReader _inputReader;
+    [SerializeField] private float _jumpForce;
+
+    private Rigidbody2D _rigidbody;
+
+    private void Awake()
     {
-        
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        _inputReader.JumpButtonPressed += OnJumpedButtonPressed;
+    }
+
+    private void OnDisable()
+    {
+        _inputReader.JumpButtonPressed -= OnJumpedButtonPressed;
+    }
+
+    private void OnJumpedButtonPressed()
+    {
+        _rigidbody.AddForce(Vector2.up * _jumpForce);
     }
 }
