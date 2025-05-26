@@ -1,36 +1,65 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class ParallaxBehaviour : MonoBehaviour
 {
-    [SerializeField] private Transform _camera;
+    [SerializeField] private Camera _camera;
     [SerializeField] private float _parallaxEffectStrength;
+    [SerializeField] private SpriteRenderer[] _sprites;
 
+    private Vector3 _cameraPreviousPosition;
     private float _tileSize;
-    private SpriteRenderer _spriteRenderer;
-    private float _startPositionX;
+    private Queue<SpriteRenderer> _spritesQueue;
 
     private void Start()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _tileSize = _spriteRenderer.sprite.textureRect.width / _spriteRenderer.sprite.pixelsPerUnit;
-        _startPositionX = transform.position.x;
+        _cameraPreviousPosition = _camera.transform.position;
+        _tileSize = _sprites.FirstOrDefault().bounds.size.x - 1f;
+        _spritesQueue = new Queue<SpriteRenderer>(_sprites);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        float distance = _camera.position.x * _parallaxEffectStrength;
-        float movement = _camera.position.x * (1 - _parallaxEffectStrength);
+        Vector3 delta = _camera.transform.position - _cameraPreviousPosition;
+        float rightBound = GetRightBound();
+        float cameraRightBound = GetCameraRightBound(); 
 
-        if (movement > _startPositionX + _tileSize)
+        if (cameraRightBound >= rightBound)
         {
-            float offset = movement - (_startPositionX + _tileSize);
-            _startPositionX += (_tileSize * 2);
+            ChangeSprite();
         }
-        else
-        {
-            Vector3 newPosition = new Vector3(_startPositionX + distance, transform.position.y, transform.position.z);
-            transform.position = newPosition;
-        }
+
+        _cameraPreviousPosition = _camera.transform.position;
+
+        transform.position += delta * _parallaxEffectStrength;
+    }
+
+    private void ChangeSprite()
+    {
+        SpriteRenderer leftSprite = _spritesQueue.Dequeue();
+        SpriteRenderer centerSprite = _spritesQueue.Peek();
+
+        float newPositionX = _spritesQueue.Last().transform.position.x + _tileSize;
+
+        leftSprite.transform.position = new Vector3(newPositionX, leftSprite.transform.position.y, leftSprite.transform.position.z);
+
+        _spritesQueue.Enqueue(leftSprite);
+    }
+
+    private float GetRightBound()
+    {
+        SpriteRenderer rightSprite = _spritesQueue.Last();
+
+        float rightPosition = rightSprite.transform.position.x - (_tileSize / 2);
+        return rightPosition;
+    }
+
+    private float GetCameraRightBound()
+    {
+        float cameraHalfWidth = _camera.orthographicSize * _camera.aspect;
+        float rightBound = _camera.transform.position.x + cameraHalfWidth;
+
+        return rightBound;
     }
 }
