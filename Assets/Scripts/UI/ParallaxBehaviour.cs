@@ -15,13 +15,14 @@ public class ParallaxBehaviour : MonoBehaviour
     private void Start()
     {
         _cameraPreviousPosition = _camera.transform.position;
-        _tileSize = _sprites.FirstOrDefault().bounds.size.x - 1f;
+        _tileSize = _sprites.FirstOrDefault().bounds.size.x -1f;
         _spritesQueue = new Queue<SpriteRenderer>(_sprites);
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Vector3 delta = _camera.transform.position - _cameraPreviousPosition;
+        delta.y = 0f;
         float rightBound = GetRightBound();
         float cameraRightBound = GetCameraRightBound(); 
 

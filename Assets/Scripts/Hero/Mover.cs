@@ -4,7 +4,7 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Vector2 _velocity;
+    [SerializeField] private float _maxSpeed;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _direction;
@@ -18,6 +18,10 @@ public class Mover : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody.AddForce(_direction * _speed);
-        _rigidbody.linearVelocity = _velocity;
+
+        if (_rigidbody.linearVelocity.magnitude > _maxSpeed)
+        {
+            _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _maxSpeed;
+        }
     }
 }
