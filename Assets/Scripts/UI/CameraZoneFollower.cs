@@ -1,18 +1,28 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraZoneFollower : MonoBehaviour
 {
-    private float _currenyPositionY;
+    [SerializeField] private Transform _target;
+    [SerializeField] private float _maxDelta;
+    [SerializeField] private float _movementFrequency;
+
+    private WaitForSeconds _movementDelay;
 
     private void Start()
     {
-        _currenyPositionY = transform.position.y;
+        _movementDelay = new WaitForSeconds(_movementFrequency);
+
+        StartCoroutine(MoveToTarget());
     }
 
-    private void FixedUpdate()
+    private IEnumerator MoveToTarget()
     {
-        Vector3 position = new Vector3(transform.position.x, _currenyPositionY, transform.position.z);
-
-        transform.position = position;
+        while (gameObject.activeSelf)
+        {
+            float positionX = Mathf.MoveTowards(transform.position.x, _target.position.x, _maxDelta);
+            transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
+            yield return _movementDelay;
+        }
     }
 }

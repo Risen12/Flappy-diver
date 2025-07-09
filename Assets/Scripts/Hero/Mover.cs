@@ -9,6 +9,8 @@ public class Mover : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Vector2 _direction;
 
+    public float Speed => _speed;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();

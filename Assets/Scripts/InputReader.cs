@@ -28,12 +28,16 @@ public class InputReader : MonoBehaviour
             JumpButtonPressed?.Invoke();
         }
 
-        _mousePosition.x = Input.GetAxis(HorizontalAxisName);
-        _mousePosition.y = Input.GetAxis(VerticalAxisName);
+        _mousePosition.x = Input.mousePosition.x;
+        _mousePosition.y = Input.mousePosition.y;
 
         if (_mousePosition.x != _currentMousePositionX || _mousePosition.y != _currentMousePositionY)
         {
+            Debug.Log($"{_mousePosition.x}{_mousePosition.y}");
+            _currentMousePositionX = _mousePosition.x;
+            _currentMousePositionY = _mousePosition.y;
             _mousePosition = new Vector2(_currentMousePositionX, _currentMousePositionY);
+            _mousePosition = Camera.main.ScreenToWorldPoint(_mousePosition);
             MousePositionChanged?.Invoke(_mousePosition);
         }
     }

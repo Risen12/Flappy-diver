@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Scorer : Holder
 {
+    [SerializeField] private Mover _mover;
+
     private float _score;
 
     private void Start()
@@ -13,7 +15,7 @@ public class Scorer : Holder
 
     private void Update()
     {
-        _score += _valueChanger * Time.deltaTime;
+        _score += (_valueChanger *_mover.Speed) * Time.deltaTime;
 
         if (Math.Abs(_score - _lastNotifierValue) >= _eventFrequency)
         {
