@@ -4,18 +4,10 @@ public class CrosshairHolder : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
 
-    private void OnEnable()
+    private void LateUpdate()
     {
-        _inputReader.MousePositionChanged += OnMousePositionChanged;
-    }
-
-    private void OnDisable()
-    {
-        _inputReader.MousePositionChanged -= OnMousePositionChanged;
-    }
-
-    private void OnMousePositionChanged(Vector2 mousePosition)
-    { 
+        Vector3 mousePosition = _inputReader.MousePosition;
+        mousePosition.z = 0;
         transform.position = mousePosition;
     }
 }

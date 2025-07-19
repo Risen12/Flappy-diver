@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
-    private const string HorizontalAxisName = "Horizontal";
-    private const string VerticalAxisName = "Vertical";
-
     private KeyCode _jumpKey;
-    private Vector2 _mousePosition;
-    private float _currentMousePositionX;
-    private float _currentMousePositionY;
+    private Vector3 _mousePosition;
+
+    public Vector3 MousePosition => _mousePosition;
 
     public event Action JumpButtonPressed;
-    public event Action<Vector2> MousePositionChanged;
+    public event Action LeftButtonMouseClicked;
 
     private void Start()
     {
         _jumpKey = KeyCode.Space;
-        _mousePosition = new Vector2(_currentMousePositionX, _currentMousePositionY);
+        _mousePosition = Vector3.zero;  
     }
 
     private void Update()
@@ -28,17 +25,13 @@ public class InputReader : MonoBehaviour
             JumpButtonPressed?.Invoke();
         }
 
-        _mousePosition.x = Input.mousePosition.x;
-        _mousePosition.y = Input.mousePosition.y;
-
-        if (_mousePosition.x != _currentMousePositionX || _mousePosition.y != _currentMousePositionY)
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log($"{_mousePosition.x}{_mousePosition.y}");
-            _currentMousePositionX = _mousePosition.x;
-            _currentMousePositionY = _mousePosition.y;
-            _mousePosition = new Vector2(_currentMousePositionX, _currentMousePositionY);
-            _mousePosition = Camera.main.ScreenToWorldPoint(_mousePosition);
-            MousePositionChanged?.Invoke(_mousePosition);
+            LeftButtonMouseClicked?.Invoke();
         }
+
+        Vector3 currentMousePosition = Input.mousePosition;
+        currentMousePosition.z = Math.Abs(Camera.main.transform.position.z);
+        _mousePosition = Camera.main.ScreenToWorldPoint(currentMousePosition);
     }
 }
