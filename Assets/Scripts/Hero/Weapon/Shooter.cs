@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] private float _shootForce;
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private float _delayBetweenShots;
-    [SerializeField] private BulletHolder _bulletHolder;
+    [SerializeField] private HeroBulletHolder _bulletHolder;
 
     private bool _isDelay;
     private WaitForSeconds _shootDelay;

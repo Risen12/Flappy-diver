@@ -1,0 +1,1 @@
+public class EnemyBulletHolder : BulletHolder<EnemyBullet> { }

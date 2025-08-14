@@ -4,10 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] protected float _speed;
 
-    private bool _isCollide;
-    private Rigidbody2D _rigidbody;
+    protected bool _isCollide;
+    protected Rigidbody2D _rigidbody;
 
     private void Awake()
     {
