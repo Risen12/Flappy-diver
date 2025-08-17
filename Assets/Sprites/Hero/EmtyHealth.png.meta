@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 2dded797b348ee844b4613ad48f3b776
+guid: 1a9315730b3f6d6488df23207705ebfd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8742553413659440527
-    second: "\u0421\u043B\u043E\u0439 4_without_bullet 1_0"
-  - first:
-      213: -8963265810586963154
-    second: "\u0421\u043B\u043E\u0439 4_without_bullet 1_1"
-  - first:
-      213: -2915049615769470941
-    second: "\u0421\u043B\u043E\u0439 4_without_bullet 1_2"
-  - first:
-      213: 3493811292540568796
-    second: "\u0421\u043B\u043E\u0439 4_without_bullet 1_3"
+      213: 4444600358116696869
+    second: EmtyHealth_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -135,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0421\u043B\u043E\u0439 4_without_bullet 1_0"
+      name: EmtyHealth_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 514
-        height: 316
+        x: 11
+        y: 21
+        width: 199
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,74 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 17a43f48df53ca680800000000000000
-      internalID: -8742553413659440527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0421\u043B\u043E\u0439 4_without_bullet 1_1"
-      rect:
-        serializedVersion: 2
-        x: 513
-        y: 229
-        width: 37
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e237f841c351c9380800000000000000
-      internalID: -8963265810586963154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0421\u043B\u043E\u0439 4_without_bullet 1_2"
-      rect:
-        serializedVersion: 2
-        x: 553
-        y: 210
-        width: 65
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 328fb6da1d9ab87d0800000000000000
-      internalID: -2915049615769470941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0421\u043B\u043E\u0439 4_without_bullet 1_3"
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 207
-        width: 45
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd4012c0cd28c7030800000000000000
-      internalID: 3493811292540568796
+      spriteID: 523ae1a2a746ead30800000000000000
+      internalID: 4444600358116696869
       vertices: []
       indices: 
       edges: []
@@ -226,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -235,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EmtyHealth_0: 4444600358116696869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

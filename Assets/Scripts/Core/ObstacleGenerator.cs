@@ -1,16 +1,42 @@
+using System.Collections;
 using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private EasyObstacleLevel[] _easyObstacleLevels;
+    [SerializeField] private MediumObstacleLevel[] _mediumObstacleLevels;
+    [SerializeField] private HardObstacleLevel[] _hardObstacleLevels;
+    [SerializeField] private float _minimumDelayBetweenGenerate;
+    [SerializeField] private float _maximumDelayBetweenGenerate;
+    [SerializeField] private Scorer _scorer;
+
+    private WaitForSeconds _delayBetweenGenerate;
+
+    private void Start()
+    {
+        StartCoroutine(StartGenerate());
+    }
+
+    private IEnumerator StartGenerate()
+    {
+        while (true)
+        {
+            SetDelay();
+
+            yield return _delayBetweenGenerate;
+
+            Generate();
+        }
+    }
+
+    private void Generate()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetDelay()
     {
-        
+        float delay = UserUtils.GetRandomNumber(_minimumDelayBetweenGenerate, _maximumDelayBetweenGenerate);
+        _delayBetweenGenerate = new WaitForSeconds(delay);
     }
 }

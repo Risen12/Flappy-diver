@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,6 +11,8 @@ public class Mover : MonoBehaviour
     private Vector2 _direction;
 
     public float Speed => _speed;
+
+    public event Action CollisionObstacleHappened;
 
     private void Awake()
     {
@@ -24,6 +27,14 @@ public class Mover : MonoBehaviour
         if (_rigidbody.linearVelocity.magnitude > _maxSpeed)
         {
             _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _maxSpeed;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Obstacle obstacle))
+        {
+            CollisionObstacleHappened?.Invoke();
         }
     }
 }
