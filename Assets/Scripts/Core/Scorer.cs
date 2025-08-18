@@ -7,6 +7,8 @@ public class Scorer : Holder
 
     private float _score;
 
+    public float Score => _score;
+
     private void Start()
     {
         _score = 0;

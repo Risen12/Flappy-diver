@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af70fb3cd0b50074cba5815b4bdf78d5, type: 3}
+  m_Name: EasyObstacleLevel
+  m_EditorClassIdentifier: 
+  _upLineObstacle: {fileID: 0}
+  _middleLineObstacle: {fileID: 0}
+  _downLineObstacle: {fileID: 1152311888278055103, guid: f6990304eb27d9a4dae12edcd3dd7691, type: 3}
+  _minScoreToGenerate: 0

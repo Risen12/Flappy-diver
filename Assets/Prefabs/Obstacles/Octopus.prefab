@@ -546,6 +546,9 @@ GameObject:
   - component: {fileID: 8805705339021091309}
   - component: {fileID: 4622434600858452476}
   - component: {fileID: 466512886054053972}
+  - component: {fileID: 4251767127096119306}
+  - component: {fileID: 5605684617558879259}
+  - component: {fileID: 1289767845235136428}
   m_Layer: 0
   m_Name: Octopus
   m_TagString: Untagged
@@ -690,6 +693,43 @@ PolygonCollider2D:
       - {x: 0.63804114, y: 0.15220618}
       - {x: 0.95105654, y: 0.18677187}
   m_UseDelaunayMesh: 0
+--- !u!114 &4251767127096119306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436737985792116998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f53b79ceed5e049af9bc1f4b1358ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5605684617558879259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436737985792116998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e777c3d57348da4c970af6c9b2194ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1289767845235136428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436737985792116998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d192130ae97f6b9449859f956701fbee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireRate: 0
 --- !u!1 &2589600524421983720
 GameObject:
   m_ObjectHideFlags: 0

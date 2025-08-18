@@ -1,20 +1,25 @@
 using System.Collections;
+using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
-    [SerializeField] private EasyObstacleLevel[] _easyObstacleLevels;
-    [SerializeField] private MediumObstacleLevel[] _mediumObstacleLevels;
-    [SerializeField] private HardObstacleLevel[] _hardObstacleLevels;
+    [SerializeField] private ObstacleLevel[] _obstacleLevels;
     [SerializeField] private float _minimumDelayBetweenGenerate;
     [SerializeField] private float _maximumDelayBetweenGenerate;
     [SerializeField] private Scorer _scorer;
+    [SerializeField] private Transform _upLine;
+    [SerializeField] private Transform _downLine;
+    [SerializeField] private Transform _middleLine;
 
     private WaitForSeconds _delayBetweenGenerate;
+    private Transform[] _lines;
 
     private void Start()
     {
         StartCoroutine(StartGenerate());
+        _lines = new Transform[] { _upLine, _middleLine, _downLine }; 
     }
 
     private IEnumerator StartGenerate()
@@ -25,13 +30,36 @@ public class ObstacleGenerator : MonoBehaviour
 
             yield return _delayBetweenGenerate;
 
-            Generate();
+            ObstacleLevel level = PrepareLevel();
+            GenerateObstacleLevel(level);
         }
     }
 
-    private void Generate()
+    private void GenerateObstacleLevel(ObstacleLevel level)
     {
-        
+        Obstacle[] obstacles = new Obstacle[] {level.UpLineObstacle, level.MiddleLineObstacle, level.DownLineObstacle }; 
+
+        for (int i = 0; i < _lines.Length; i++)
+        {
+            GenerateObstacle(_lines[i], obstacles[i]);    
+        }
+    }
+
+    private void GenerateObstacle(Transform line, Obstacle obstacle)
+    {
+        if (obstacle == null)
+            return;
+
+        Obstacle createdObstacle = Instantiate(obstacle);
+        createdObstacle.transform.position = line.transform.position;
+    }
+
+    private ObstacleLevel PrepareLevel()
+    {
+        ObstacleLevel[] actualLevels = _obstacleLevels.Where(level => _scorer.Score >= level.MinScoreToGenerate).ToArray();
+        int index = (int)UserUtils.GetRandomNumber(0, actualLevels.Length - 1);
+
+        return actualLevels[index];
     }
 
     private void SetDelay()
